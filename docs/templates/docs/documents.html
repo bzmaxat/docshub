@@ -1,0 +1,76 @@
+{% extends 'docs/base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block css %}
+    <link href="{% static 'vendor/css/docs.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <div class="container" style="max-width:1600px">
+    <div class="row">
+    <div class="col-md-12">
+    <div class="card">
+    <div class="card-body">
+    </div>
+    <div class="table-responsive">
+    <table class="table no-wrap user-table mb-0">
+        {% if object_list %}
+            <thead>
+            <tr>
+            <th scope="col" class="border-0 text-uppercase font-medium pl-4">#</th>
+            <th scope="col" class="border-0 text-uppercase font-medium">Name</th>
+            <th scope="col" class="border-0 text-uppercase font-medium">Description</th>
+            <th scope="col" class="border-0 text-uppercase font-medium">Added</th>
+            <th scope="col" class="border-0 text-uppercase font-medium">Author</th>
+            <th scope="col" class="border-0 text-uppercase font-medium">Manage</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for product in object_list %}
+                    <tr>
+                    <td class="pl-4">{{ product.id }}</td>
+                    <td>
+                        <h5 class="font-medium mb-0">{{ product.name }}</h5>
+                    </td>
+                    <td>
+                        <span class="text-muted">{{ product.description }}</span><br>
+                    </td>
+                    <td>
+                        <span class="text-muted">{{ product.created|naturaltime }}</span><br>
+                    </td>
+                    <td>
+                        <span class="text-muted">{{ product.initiator.email }}</span><br>
+                    </td>
+                    <td>
+                        {% if product.initiator.id == user.id %}
+                            <a href="{% url 'docs:delete' product.id %}">
+                                <button type="button" title="Delete" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-trash"></i> </button>
+                            </a>
+                            <a href="{% url 'docs:update' product.id %}">
+                                <button type="button" title="Update" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-edit"></i> </button>
+                            </a>
+                        {% endif %}
+                        <a href="{{ product.file.url }}" target="_blank">
+                            <button type="button" title="Download" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-download"></i> </button>
+                        </a>
+                    </td>
+                    </tr>
+                {% endfor %}
+        {% else %}
+            <h5 class="mt-3 mb-3" align="center">No documents yet</h5>
+        {% endif %}
+    </tbody>
+    </table>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript">
+
+    </script>
+{% endblock %}
