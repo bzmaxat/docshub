@@ -7,59 +7,59 @@
 
 #### Clone a GitHub Repository 
 
-```http
-  git clone https://github.com/bzmaxat/docshub.git
+```link
+git clone https://github.com/bzmaxat/docshub.git
 ```
 
 #### Create a virtual environment.
 
 Unix/Linux/macOS
 
-```http
+```link
   python3 -m venv venv
 ```
 
 Windows 
 
-```http
+```link
   python -m venv venv
 ```
 #### Activate the virtual environment
 
 Unix/Linux/macOS
 
-```http
+```link
   source env/bin/activate
 ```
 
 Windows 
 
-```http
+```link
   .\env\Scripts\activate
 ```
 
 #### Install the requirements
 
-```http
+```link
   pip install -r requirements.txt
 ```
 
 #### Make your migrations
 
-```http
+```link
   python manage.py makemigrations
   python manage.py migrate
 ```
 
 #### Create a new superuser
 
-```http
+```link
   python manage.py createsuperuser
 ```
 
 #### And finally
 
-```http
+```link
   python manage.py runserver
 ```
 
@@ -76,7 +76,7 @@ URL для HTTP запросов: `http://127.0.0.1:8000/api/docs/`
 Для получения токена:
 
 `POST` запрос на `http://127.0.0.1:8000/api-token-auth/` с параметрами 
-```http
+```json
 {
     "username": "example@mail.com",
     "password": "password"
