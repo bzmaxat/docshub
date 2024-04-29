@@ -46,6 +46,7 @@ INSTALLED_APPS = [
 
     'docs',
     'users',
+    'api',
 ]
 
 MIDDLEWARE = [
